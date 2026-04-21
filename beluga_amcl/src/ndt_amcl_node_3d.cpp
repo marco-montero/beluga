@@ -39,15 +39,15 @@
 #include <sophus/types.hpp>
 
 #include <Eigen/src/Core/Matrix.h>
-#include <tf2_ros/buffer.h>
-#include <tf2_ros/buffer_interface.h>
-#include <tf2_ros/create_timer_ros.h>
-#include <tf2_ros/message_filter.h>
-#include <tf2_ros/transform_broadcaster.h>
-#include <tf2_ros/transform_listener.h>
 #include <tf2/convert.hpp>
 #include <tf2/exceptions.hpp>
 #include <tf2/time.hpp>
+#include <tf2_ros/buffer.hpp>
+#include <tf2_ros/buffer_interface.hpp>
+#include <tf2_ros/create_timer_ros.hpp>
+#include <tf2_ros/message_filter.hpp>
+#include <tf2_ros/transform_broadcaster.hpp>
+#include <tf2_ros/transform_listener.hpp>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcpp"
@@ -73,12 +73,12 @@
 #include <beluga/sensor/ndt_sensor_model.hpp>
 #include <beluga/views/particles.hpp>
 #include <beluga_ros/messages.hpp>
+#include <beluga_ros/ndt_ellipsoid.hpp>
 #include <beluga_ros/particle_cloud.hpp>
 #include <beluga_ros/tf2_sophus.hpp>
 #include "beluga_amcl/message_filters.hpp"
 #include "beluga_amcl/ndt_amcl_node_3d.hpp"
 #include "beluga_amcl/ros2_common.hpp"
-#include "beluga_ros/ndt_ellipsoid.hpp"
 
 namespace beluga_amcl {
 
@@ -158,7 +158,7 @@ void NdtAmclNode3D::do_activate(const rclcpp_lifecycle::State&) {
   map_visualization_pub_->on_activate();
 
   // Publish markers for map visualization
-  beluga_ros::msg::MarkerArray obstacle_markers{};
+  visualization_msgs::msg::MarkerArray obstacle_markers{};
   bool visualization_error;
   std::tie(obstacle_markers, visualization_error) = beluga_ros::assign_obstacle_map(map_, obstacle_markers);
   if (visualization_error) {
@@ -339,7 +339,7 @@ void NdtAmclNode3D::do_periodic_timer_callback() {
   }
   std::visit(
       [this](const auto& particle_filter) {
-        auto message = beluga_ros::msg::PoseArray{};
+        auto message = geometry_msgs::msg::PoseArray{};
         beluga_ros::assign_particle_cloud(particle_filter.particles(), message);
         beluga_ros::stamp_message(get_parameter("global_frame_id").as_string(), now(), message);
         particle_cloud_pub_->publish(message);

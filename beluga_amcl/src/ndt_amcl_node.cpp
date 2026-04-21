@@ -33,15 +33,15 @@
 #include <sophus/se2.hpp>
 #include <sophus/types.hpp>
 
-#include <tf2_ros/buffer.h>
-#include <tf2_ros/buffer_interface.h>
-#include <tf2_ros/create_timer_ros.h>
-#include <tf2_ros/message_filter.h>
-#include <tf2_ros/transform_broadcaster.h>
-#include <tf2_ros/transform_listener.h>
 #include <tf2/convert.hpp>
 #include <tf2/exceptions.hpp>
 #include <tf2/time.hpp>
+#include <tf2_ros/buffer.hpp>
+#include <tf2_ros/buffer_interface.hpp>
+#include <tf2_ros/create_timer_ros.hpp>
+#include <tf2_ros/message_filter.hpp>
+#include <tf2_ros/transform_broadcaster.hpp>
+#include <tf2_ros/transform_listener.hpp>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcpp"
@@ -122,8 +122,11 @@ void NdtAmclNode::do_activate(const rclcpp_lifecycle::State&) {
         return rmw_qos_profile_sensor_data;
       }
     }();
+
+    const auto scan_topic = get_parameter("scan_topic").as_string();  // may default to the empty string
+    // TODO(hidmic): rework parameter defaults after rehashing what constitutes common node code
     laser_scan_sub_ = std::make_unique<message_filters::Subscriber<sensor_msgs::msg::LaserScan>>(
-        shared_from_this(), get_parameter("scan_topic").as_string(), laser_scan_qos, common_subscription_options_);
+        shared_from_this(), !scan_topic.empty() ? scan_topic : "scan", laser_scan_qos, common_subscription_options_);
 
     // Message filter that caches laser scan readings until it is possible to transform
     // from laser frame to odom frame and update the particle filter.
@@ -272,7 +275,7 @@ void NdtAmclNode::do_periodic_timer_callback() {
   }
   std::visit(
       [this](const auto& particle_filter) {
-        auto message = beluga_ros::msg::PoseArray{};
+        auto message = geometry_msgs::msg::PoseArray{};
         beluga_ros::assign_particle_cloud(particle_filter.particles(), message);
         beluga_ros::stamp_message(get_parameter("global_frame_id").as_string(), now(), message);
         particle_cloud_pub_->publish(message);

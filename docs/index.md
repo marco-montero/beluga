@@ -26,7 +26,8 @@ limitations under the License.
 
 ---
 
-[![CI pipeline](https://github.com/Ekumen-OS/beluga/actions/workflows/ci_pipeline.yml/badge.svg?branch=main)](https://github.com/Ekumen-OS/beluga/actions/workflows/ci_pipeline.yml?query=branch:main)
+[![Colcon CI pipeline](https://github.com/Ekumen-OS/beluga/actions/workflows/colcon.yml/badge.svg?branch=main)](https://github.com/Ekumen-OS/beluga/actions/workflows/colcon.yml?query=branch:main)
+[![Bazel CI pipeline](https://github.com/Ekumen-OS/beluga/actions/workflows/bazel.yml/badge.svg?branch=main)](https://github.com/Ekumen-OS/beluga/actions/workflows/bazel.yml?query=branch:main)
 [![codecov](https://codecov.io/gh/Ekumen-OS/beluga/branch/main/graph/badge.svg?token=rK7BNC5giK)](https://codecov.io/gh/Ekumen-OS/beluga)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![License Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](https://github.com/Ekumen-OS/beluga/blob/main/LICENSE)
@@ -135,10 +136,6 @@ Beluga AMCL running on an [Andino](https://github.com/Ekumen-OS/andino) robot (R
 Beluga is supported on a number of ROS 1 and ROS 2 distributions, primarily on Linux platforms:
 
 ::::{grid}
-:::{grid-item-card} ROS 1 Noetic Ninjemys
-:text-align: center
-![ROS 1 Noetic Ninjemys logo](./_images/noetic_ninjemys_logo.png)
-:::
 :::{grid-item-card} ROS 2 Humble Hawksbill
 :text-align: center
 ![ROS 2 Humble Hawksbill logo](./_images/humble_hawksbill_logo.png)
@@ -146,6 +143,10 @@ Beluga is supported on a number of ROS 1 and ROS 2 distributions, primarily on L
 :::{grid-item-card} ROS 2 Jazzy Jalisco
 :text-align: center
 ![ROS 2 Jazzy Jalisco logo](./_images/jazzy_jalisco_logo.png)
+:::
+:::{grid-item-card} ROS 2 Kilted Kaiju
+:text-align: center
+![ROS 2 Kilted Kaiju logo](./_images/kilted_kaiju_logo.png)
 :::
 ::::
 

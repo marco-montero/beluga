@@ -23,16 +23,19 @@
 #include <string_view>
 
 #include <bondcpp/bond.hpp>
+#include <geometry_msgs/msg/pose_array.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <nav_msgs/msg/occupancy_grid.hpp>
+#include <visualization_msgs/msg/marker_array.hpp>
+
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/time.hpp>
 
-#include <tf2_ros/create_timer_ros.h>
-#include <tf2_ros/transform_broadcaster.h>
-#include <tf2_ros/transform_listener.h>
 #include <tf2/convert.hpp>
 #include <tf2/utils.hpp>
+#include <tf2_ros/create_timer_ros.hpp>
+#include <tf2_ros/transform_broadcaster.hpp>
+#include <tf2_ros/transform_listener.hpp>
 
 #include <beluga_ros/tf2_sophus.hpp>
 
@@ -119,8 +122,6 @@ class BaseAMCLNode : public rclcpp_lifecycle::LifecycleNode {
   rclcpp_lifecycle::LifecyclePublisher<visualization_msgs::msg::MarkerArray>::SharedPtr particle_markers_pub_;
   /// Estimated pose publisher.
   rclcpp_lifecycle::LifecyclePublisher<geometry_msgs::msg::PoseWithCovarianceStamped>::SharedPtr pose_pub_;
-  /// Likelihood field publisher
-  rclcpp_lifecycle::LifecyclePublisher<nav_msgs::msg::OccupancyGrid>::SharedPtr likelihood_field_pub_;
   /// Node bond with the lifecycle manager.
   std::unique_ptr<bond::Bond> bond_;
   /// Timer for periodic particle cloud updates.

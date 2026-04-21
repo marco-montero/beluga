@@ -2,6 +2,27 @@
 Changelog for package beluga
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.1 (2026-04-20)
+------------------
+* Change default of the strict boundaries setting to true (`#555 <https://github.com/Ekumen-OS/beluga/issues/555>`_)
+* Add paranoid mode (`#557 <https://github.com/Ekumen-OS/beluga/issues/557>`_)
+* Add missing Eigen/Eigenvalues include for GCC 15 / Eigen5 compatibility (`#553 <https://github.com/Ekumen-OS/beluga/issues/553>`_)
+* Add new overload for reweight action that tracks likelihood (`#530 <https://github.com/Ekumen-OS/beluga/issues/530>`_)
+* Thick walls pre-processing feature added (`#541 <https://github.com/Ekumen-OS/beluga/issues/541>`_)
+* Add random probability term to landmark sensor model (`#544 <https://github.com/Ekumen-OS/beluga/issues/544>`_)
+* Drop `ciabatta` dependency (`#542 <https://github.com/Ekumen-OS/beluga/issues/542>`_)
+* Contributors: Andrés Brumovsky, Gerardo Puga, Jesús Silva, Michel Hidalgo, Nahuel Espinosa, Paul Verhoeckx, Tim Clephas
+
+2.1.0 (2025-11-25)
+------------------
+* Beluga compiles with MSVC on Windows (`#523 <https://github.com/Ekumen-OS/beluga/issues/523>`_)
+* Add support for Bazel builds (`#521 <https://github.com/Ekumen-OS/beluga/issues/521>`_)
+* Expose model_unknown_space parameter to ROS2 (`#448 <https://github.com/Ekumen-OS/beluga/issues/448>`_)
+* Add likelihood prob sensor model and enable Beluga's flavour of clustering (`#476 <https://github.com/Ekumen-OS/beluga/issues/476>`_)
+* Add 2D state type to likelihood field sensor model for beluga_vdb (`#480 <https://github.com/Ekumen-OS/beluga/issues/480>`_)
+* Fix to likelihood map pre-calculation performance for large maps (`#471 <https://github.com/Ekumen-OS/beluga/issues/471>`_)
+* Contributors: Diego Palma, Gerardo Puga, Nahuel Espinosa, Pablo Vela, Florencia Battocchia
+
 2.0.2 (2024-06-18)
 ------------------
 * Use `no-gnu-zero-variadic-macro-arguments` only with `clang-tidy` (`#391 <https://github.com/Ekumen-OS/beluga/issues/391>`_)
